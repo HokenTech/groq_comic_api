@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap');
+
+body.comic-mode-active { }
+
+.comic-strip-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 25px;
+  font-family: 'Comic Neue', 'Comic Sans MS', 'Chalkboard SE', cursive;
+  background: linear-gradient(135deg, #f0f3f5 0%, #d9e2ec 100%);
+  border: 2px solid #4A4A4A;
+  border-radius: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), 0 0 0 5px #ffffff, 0 0 0 7px #4A4A4A;
+  position: relative;
+}
+
+@keyframes panelPopIn {
+  0% { opacity: 0; transform: scale(0.8) translateY(30px); }
+  80% { transform: scale(1.05) translateY(-5px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.comic-panel {
+  background-color: #ffffff;
+  border: 4px solid #2c3e50;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow: hidden;
+  opacity: 0;
+  animation-name: panelPopIn;
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-fill-mode: forwards;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.comic-panel:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.comic-panel-title {
+  font-family: 'Bangers', 'Impact', 'Arial Black', sans-serif;
+  font-size: 2.2em;
+  color: #ffffff;
+  background-color: #e74c3c;
+  padding: 10px 20px;
+  margin: -20px -20px 15px -20px;
+  border-bottom: 4px solid #c0392b;
+  text-align: center;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 0px #c0392b;
+  position: relative;
+  border-radius: 10px 10px 0 0;
+}
+
+.comic-panel-title::before {
+  content: "💥 ";
+  font-size: 0.8em;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.comic-panel-title::after {
+  content: " 🗯️";
+  font-size: 0.8em;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.comic-panel-content {
+  font-size: 1.15em;
+  line-height: 1.7;
+  color: #34495e;
+}
+
+.comic-panel-content p,
+.comic-panel-content ul,
+.comic-panel-content ol,
+.comic-panel-content blockquote {
+  margin-bottom: 1em;
+}
+
+.comic-panel-content strong, .comic-panel-content b { color: #2c3e50; }
+.comic-panel-content a { color: #3498db; text-decoration: none; font-weight: bold; }
+.comic-panel-content a:hover { text-decoration: underline; color: #2980b9; }
+
+.comic-panel-content img {
+  max-width: 100%; height: auto; display: block; margin: 15px auto;
+  border: 3px solid #bdc3c7; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.comic-panel-content table {
+  width: 100%; border-collapse: separate; border-spacing: 0; margin-bottom: 1em;
+  border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden;
+}
+.comic-panel-content th, .comic-panel-content td {
+  border-bottom: 1px solid #e0e0e0; padding: 10px 12px; text-align: left;
+}
+.comic-panel-content th {
+  background-color: #ecf0f1; font-weight: bold; color: #2c3e50;
+  font-family: 'Comic Neue', sans-serif; font-weight: 700;
+}
+.comic-panel-content tr:last-child td { border-bottom: none; }
+
+.comic-panel-content pre {
+  background-color: #34495e; color: #ecf0f1; padding: 15px; border-radius: 6px;
+  overflow-x: auto; font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95em; box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+}
+.comic-panel-content blockquote {
+  border-left: 5px solid #f1c40f; padding-left: 15px; margin-left: 0;
+  font-style: italic; color: #7f8c8d;
+}
+
+.original-article-hidden-by-comic { display: none !important; }
+
+button[onclick*='comicUI.remove()'] {
+  display: block; margin: 30px auto 10px auto !important; padding: 12px 25px !important;
+  font-family: 'Bangers', 'Impact', sans-serif !important; font-size: 1.3em !important;
+  background-color: #2ecc71 !important; color: white !important; border: none !important;
+  border-radius: 8px !important; border-bottom: 3px solid #27ae60 !important;
+  cursor: pointer !important; text-shadow: 1px 1px 0px #27ae60;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+button[onclick*='comicUI.remove()']:hover { background-color: #27ae60 !important; transform: translateY(-2px); }
+button[onclick*='comicUI.remove()']:active { transform: translateY(1px); border-bottom-width: 1px; }
+
+
+.comic-panel-ai-rewrite-button {
+  display: inline-block; 
+  margin: 15px 5px 5px 5px; 
+  padding: 10px 18px;
+  font-family: 'Comic Neue', 'Arial', sans-serif;
+  font-weight: bold;
+  font-size: 0.95em;
+  background: linear-gradient(145deg, #3dadec, #2c89d0); 
+  color: white;
+  border: none;
+  border-radius: 20px; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2), inset 0 -2px 1px rgba(0,0,0,0.1);
+  cursor: pointer;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.comic-panel-ai-rewrite-button:hover {
+  background: linear-gradient(145deg, #4FB8EF, #3FA0E0);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25), inset 0 -1px 0px rgba(0,0,0,0.1);
+}
+.comic-panel-ai-rewrite-button:active {
+  transform: translateY(0px) scale(0.98);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2), inset 0 -1px 0px rgba(0,0,0,0.1);
+}

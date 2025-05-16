@@ -1,0 +1,36 @@
+
+{
+    "manifest_version": 3,
+    "name": "Converti Articolo in Fumetto (Groq API)",
+    "version": "1.5", 
+    "description": "Converte il testo di un articolo in un fumetto usando un'API custom basata su Groq e ospitata su Render.com.",
+    "permissions": [
+      "activeTab", 
+      "scripting"  
+    ],
+    "host_permissions": [
+      "https://groq-comic-api.onrender.com/*" 
+                                             
+    ],
+    "background": {
+      "service_worker": "background.js" 
+    },
+    "action": {
+      "default_title": "Converti in Fumetto (Groq)"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"], 
+        "js": [], 
+        "css": ["style.css"] 
+      }
+    ],
+    "web_accessible_resources": [ 
+      {
+        "resources": ["style.css", "fonts/*"], 
+        "matches": ["<all_urls>"]
+      }
+    ]
+}
+  
+  
