@@ -86,7 +86,7 @@ def generate_comic_panels():
                     "content": f"Analizza il seguente testo dell'articolo e strutturalo in pannelli di fumetto come specificato:\n\n---ARTICOLO---\n{article_text}\n---FINE ARTICOLO---"
                 }
             ],
-            model="mixtral-8x7b-32768",
+            model="llama-3.3-70b-versatile",
             temperature=0.5,
             response_format={"type": "json_object"}
         )
